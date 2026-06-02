@@ -11,18 +11,23 @@ const ROLES = [
 export function Hero() {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [displayWord, setDisplayWord] = useState(ROLES[0]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timer = setTimeout(() => {
       setIsTransitioning(true);
+      
       setTimeout(() => {
-        setCurrentRoleIndex((prev) => (prev + 1) % ROLES.length);
+        const nextIndex = (currentRoleIndex + 1) % ROLES.length;
+        setCurrentRoleIndex(nextIndex);
+        setDisplayWord(ROLES[nextIndex]);
         setIsTransitioning(false);
-      }, 600); // Wait for the 600ms blur-out transition
-    }, 3500); // Total cycle duration (including transition time)
+      }, 700); // Allow time for stagger blur-out to cascade across characters
+      
+    }, 3500); // Total display time before initiating blur-out
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [currentRoleIndex]);
 
   return (
     <section id="home" className="pt-16 pb-10">
@@ -32,16 +37,36 @@ export function Hero() {
         </div>
         <div>
           <h1 className="text-3xl font-medium tracking-tight text-foreground">Bharat Dhuva</h1>
-          <p
-            style={{
-              transition: "filter 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 600ms cubic-bezier(0.4, 0, 0.2, 1)",
-              filter: isTransitioning ? "blur(8px)" : "blur(0px)",
-              opacity: isTransitioning ? 0.1 : 1,
-            }}
-            className="text-sm text-muted-foreground mt-0.5 select-none"
-          >
-            {ROLES[currentRoleIndex]}
-          </p>
+          <div className="inline-grid font-medium align-baseline text-left text-sm text-muted-foreground mt-0.5 select-none">
+            {/* Invisible spacer layers for all words to prevent layout shift */}
+            {ROLES.map((role) => (
+              <span
+                key={role}
+                className="invisible col-start-1 row-start-1 block whitespace-nowrap"
+                aria-hidden="true"
+              >
+                {role}
+              </span>
+            ))}
+
+            {/* The actual visible animated word */}
+            <span className="col-start-1 row-start-1 block whitespace-nowrap">
+              {displayWord.split("").map((char, charIdx) => (
+                <span
+                  key={charIdx}
+                  className="inline-block whitespace-pre"
+                  style={{
+                    transition: "filter 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 400ms cubic-bezier(0.4, 0, 0.2, 1)",
+                    transitionDelay: `${charIdx * 20}ms`,
+                    filter: isTransitioning ? "blur(6px)" : "blur(0px)",
+                    opacity: isTransitioning ? 0 : 1,
+                  }}
+                >
+                  {char}
+                </span>
+              ))}
+            </span>
+          </div>
         </div>
       </div>
 
