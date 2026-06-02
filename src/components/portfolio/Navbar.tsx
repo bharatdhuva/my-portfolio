@@ -12,8 +12,11 @@ export function Navbar() {
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    // Default to light mode; only go dark if user explicitly chose dark before
+    // Default to light mode on first visit; only go dark if the user explicitly chose it before.
     const isDark = stored === "dark";
+    if (stored == null) {
+      localStorage.setItem("theme", "light");
+    }
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
   }, []);
