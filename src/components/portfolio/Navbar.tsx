@@ -1,0 +1,49 @@
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const links = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Components", href: "#projects" },
+];
+
+export function Navbar() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    const isDark = stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    setDark(isDark);
+    document.documentElement.classList.toggle("dark", isDark);
+  }, []);
+
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
+  };
+
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/50">
+      <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+        <ul className="flex items-center gap-6 text-sm">
+          {links.map((l) => (
+            <li key={l.label}>
+              <a href={l.href} className="text-foreground/80 hover:text-foreground transition-colors">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <button
+          onClick={toggle}
+          aria-label="Toggle theme"
+          className="p-2 rounded-md hover:bg-muted transition-colors text-foreground/70"
+        >
+          {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        </button>
+      </nav>
+    </header>
+  );
+}
