@@ -3,34 +3,83 @@ import { MapPin, Mail, User, Github, Globe, Twitter } from "lucide-react";
 
 const ROLES = [
   "Software Engineer",
+  "Full-Stack Developer",
   "Product Engineer",
-  "Freelancer",
   "Curious Builder",
+  "Detail Oriented",
+  "Freelancer",
 ];
 
 export function Hero() {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [animState, setAnimState] = useState<"idle" | "exit" | "enter">("idle");
   const [displayWord, setDisplayWord] = useState(ROLES[0]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsTransitioning(true);
-      
-      setTimeout(() => {
+    if (animState === "idle") {
+      const timer = setTimeout(() => {
+        setAnimState("exit");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+
+    if (animState === "exit") {
+      const timer = setTimeout(() => {
         const nextIndex = (currentRoleIndex + 1) % ROLES.length;
         setCurrentRoleIndex(nextIndex);
         setDisplayWord(ROLES[nextIndex]);
-        setIsTransitioning(false);
-      }, 700); // Allow time for stagger blur-out to cascade across characters
-      
-    }, 3500); // Total display time before initiating blur-out
+        setAnimState("enter");
+      }, 850); // Allow time for stagger exit animation (delays + transition)
+      return () => clearTimeout(timer);
+    }
 
-    return () => clearTimeout(timer);
-  }, [currentRoleIndex]);
+    if (animState === "enter") {
+      const timer = setTimeout(() => {
+        setAnimState("idle");
+      }, 950); // Allow time for stagger enter animation (delays + transition)
+      return () => clearTimeout(timer);
+    }
+  }, [animState, currentRoleIndex]);
 
   return (
     <section id="home" className="pt-16 pb-10">
+      {/* Keyframe Stagger Blur Animations */}
+      <style>{`
+        @keyframes blurOut {
+          0% {
+            filter: blur(0px);
+            opacity: 1;
+            transform: scale(1);
+          }
+          100% {
+            filter: blur(12px);
+            opacity: 0;
+            transform: scale(0.92);
+          }
+        }
+
+        @keyframes blurIn {
+          0% {
+            filter: blur(12px);
+            opacity: 0;
+            transform: scale(0.92);
+          }
+          100% {
+            filter: blur(0px);
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-blur-out {
+          animation: blurOut 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .animate-blur-in {
+          animation: blurIn 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+      `}</style>
+
       <div className="flex items-center gap-4 mb-8">
         <div className="h-12 w-12 rounded-md bg-gradient-to-br from-amber-200 to-rose-300 flex items-center justify-center text-lg">
           🐱
@@ -51,20 +100,23 @@ export function Hero() {
 
             {/* The actual visible animated word */}
             <span className="col-start-1 row-start-1 block whitespace-nowrap">
-              {displayWord.split("").map((char, charIdx) => (
-                <span
-                  key={charIdx}
-                  className="inline-block whitespace-pre"
-                  style={{
-                    transition: "filter 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 400ms cubic-bezier(0.4, 0, 0.2, 1)",
-                    transitionDelay: `${charIdx * 20}ms`,
-                    filter: isTransitioning ? "blur(6px)" : "blur(0px)",
-                    opacity: isTransitioning ? 0 : 1,
-                  }}
-                >
-                  {char}
-                </span>
-              ))}
+              {displayWord.split("").map((char, charIdx) => {
+                let animClass = "";
+                if (animState === "exit") animClass = "animate-blur-out";
+                else if (animState === "enter") animClass = "animate-blur-in";
+
+                return (
+                  <span
+                    key={`${displayWord}-${charIdx}`}
+                    className={`inline-block whitespace-pre ${animClass}`}
+                    style={{
+                      animationDelay: animState !== "idle" ? `${charIdx * 20}ms` : undefined,
+                    }}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
             </span>
           </div>
         </div>
