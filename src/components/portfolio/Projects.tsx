@@ -1,5 +1,7 @@
 import { Github, Globe } from "lucide-react";
 import { TechIcon } from "./TechIcon";
+import interviewosImg from "../assets/interviewos.png";
+import outlyImg from "../assets/outly.png";
 
 const projects = [
   {
@@ -8,6 +10,7 @@ const projects = [
       "Architected a scalable real-time collaborative interview platform featuring WebRTC P2P video, Y.js CRDT collaborative editor, shared whiteboard, room-scoped Socket.IO isolation, Monaco Editor, and a sandboxed Judge0 API code execution engine across 7 languages.",
     gradient: "from-indigo-600 via-purple-700 to-pink-600",
     accent: "Real-Time Collaborative Interview Platform",
+    image: interviewosImg,
     tech: ["Re", "Nd", "Mg", "Wc", "Io", "J0"],
     links: ["github"],
   },
@@ -17,6 +20,7 @@ const projects = [
       "Built an end-to-end LLM pipeline with GPT-4 that researches target companies from CSV and generates unique cold emails, auto-saved as Gmail drafts via Gmail API + OAuth 2.0. Implemented Bull + Redis distributed job queue for rate-limiting.",
     gradient: "from-amber-500 via-orange-600 to-red-600",
     accent: "AI-Powered Career & Email Automation",
+    image: outlyImg,
     tech: ["Re", "Nd", "Rd", "Bq", "G4"],
     links: ["github"],
   },
@@ -26,6 +30,7 @@ const projects = [
       "Engineered an end-to-end booking platform with movie/event/sports discovery, seat selection, a 5-minute expiry seat locking engine, QR ticket confirmations, and modular REST API.",
     gradient: "from-teal-600 via-emerald-700 to-slate-800",
     accent: "Seat-Locking Ticketing Engine",
+    image: null,
     tech: ["Re", "An", "Ss", "Dk", "Jw"],
     links: ["github"],
   },
@@ -41,15 +46,35 @@ export function Projects() {
         {projects.map((p) => (
           <article
             key={p.name}
-            className="rounded-lg border border-border overflow-hidden bg-card hover:border-foreground/20 transition-colors"
+            className="rounded-lg border border-border overflow-hidden bg-card hover:border-foreground/20 transition-colors group"
           >
-            <div
-              className={`aspect-[16/10] bg-gradient-to-br ${p.gradient} flex items-center justify-center p-6`}
-            >
-              <div className="text-center text-white/90 font-medium text-sm leading-snug">
-                {p.accent}
-              </div>
+            {/* Thumbnail */}
+            <div className="relative aspect-[16/10] overflow-hidden">
+              {p.image ? (
+                <>
+                  <img
+                    src={p.image}
+                    alt={`${p.name} screenshot`}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  {/* subtle gradient overlay at bottom for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <span className="absolute bottom-3 left-3 text-[11px] font-medium text-white/80 tracking-wide">
+                    {p.accent}
+                  </span>
+                </>
+              ) : (
+                <div
+                  className={`w-full h-full bg-gradient-to-br ${p.gradient} flex items-center justify-center p-6`}
+                >
+                  <div className="text-center text-white/90 font-medium text-sm leading-snug">
+                    {p.accent}
+                  </div>
+                </div>
+              )}
             </div>
+
+            {/* Card body */}
             <div className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-medium text-foreground">{p.name}</h3>
