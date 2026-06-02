@@ -58,9 +58,20 @@ function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
-    // We use a free, public counter API to track hits.
-    // The '/up' endpoint increments the count and returns the new value.
-    fetch("https://api.counterapi.dev/v1/bharatdhuva/portfolio/up")
+    // Check if they've already visited in this specific tab/session
+    const hasVisited = sessionStorage.getItem("hasVisited");
+    
+    // Set it immediately so React Strict Mode double-mounts don't fire twice
+    if (!hasVisited) {
+      sessionStorage.setItem("hasVisited", "true");
+    }
+
+    // If new session, call '/up' to increment. If just refreshing, fetch current count without incrementing.
+    const endpoint = hasVisited
+      ? "https://api.counterapi.dev/v1/bharatdhuva/portfolio"
+      : "https://api.counterapi.dev/v1/bharatdhuva/portfolio/up";
+
+    fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
         if (data && typeof data.count === "number") {
