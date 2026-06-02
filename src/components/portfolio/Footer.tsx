@@ -1,4 +1,5 @@
 import { Quote, Linkedin, Mail, Github } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const socialLinks = [
   { Icon: Linkedin, href: "https://linkedin.com/in/bharatdhuva27" },
@@ -21,8 +22,7 @@ export function Footer() {
           </div>
         </div>
         <div className="text-xs text-muted-foreground md:text-right">
-          You are the <span className="text-foreground font-medium">17,366</span>
-          <sup>th</sup> visitor
+          You are the <VisitorCounter /><sup>th</sup> visitor
         </div>
       </div>
 
@@ -52,4 +52,37 @@ export function Footer() {
       </div>
     </footer>
   );
+}
+
+function VisitorCounter() {
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    // We use a free, public counter API to track hits.
+    // The '/up' endpoint increments the count and returns the new value.
+    fetch("https://api.counterapi.dev/v1/bharatdhuva/portfolio/up")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.count === "number") {
+          const finalCount = data.count + 66;
+          setCount(finalCount);
+          // Cache the latest count locally so it persists if they reload with an adblocker on
+          localStorage.setItem("visitorCount", finalCount.toString());
+        } else {
+          throw new Error("Invalid response format");
+        }
+      })
+      .catch((err) => {
+        console.error("Counter API error (likely blocked by AdBlocker):", err);
+        // If Brave Shields or an ad-blocker blocks the request, fallback to the cached value or 67
+        const cached = localStorage.getItem("visitorCount");
+        setCount(cached ? parseInt(cached, 10) : 67);
+      });
+  }, []);
+
+  if (count === null) {
+    return <span className="text-foreground font-medium animate-pulse">...</span>;
+  }
+
+  return <span className="text-foreground font-medium">{count.toLocaleString()}</span>;
 }
