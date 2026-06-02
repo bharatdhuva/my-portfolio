@@ -1,9 +1,9 @@
 import { Calendar, Mail, Twitter, ArrowUpRight, ArrowRight, Clock, Check } from "lucide-react";
 
 const options = [
-  { icon: Calendar, title: "Schedule a free call", subtitle: "30-minute strategy session" },
-  { icon: Mail, title: "hello@example.com", subtitle: "Quick inquiries & questions" },
-  { icon: Twitter, title: "Connect on X", subtitle: "Follow for updates & insights" },
+  { icon: Calendar, title: "Schedule a free call", subtitle: "30-minute strategy session", href: "#" },
+  { icon: Mail, title: "bharatdhuva27@gmail.com", subtitle: "Quick inquiries & questions", href: "mailto:bharatdhuva27@gmail.com" },
+  { icon: Twitter, title: "Connect on X", subtitle: "Follow for updates & insights", href: "#" },
 ];
 
 export function Contact() {
@@ -19,10 +19,10 @@ export function Contact() {
             Choose your preferred method to connect and let's discuss your project.
           </p>
           <div className="space-y-2">
-            {options.map(({ icon: Icon, title, subtitle }) => (
+            {options.map(({ icon: Icon, title, subtitle, href }) => (
               <a
                 key={title}
-                href="#"
+                href={href}
                 className="flex items-center gap-3 p-3 rounded-md border border-border hover:bg-muted transition-colors group"
               >
                 <Icon className="h-4 w-4 text-muted-foreground" />
