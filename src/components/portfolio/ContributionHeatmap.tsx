@@ -35,13 +35,19 @@ export function ContributionHeatmap() {
           <div key={m}>{m}</div>
         ))}
       </div>
-      <div
-        className="grid gap-[3px]"
-        style={{ gridTemplateColumns: "repeat(52, minmax(0, 1fr))", gridTemplateRows: "repeat(7, 1fr)", gridAutoFlow: "column" }}
-      >
-        {cells.map((v, i) => (
-          <div key={i} className={`aspect-square rounded-[2px] ${shades[v]}`} />
-        ))}
+      <div className="overflow-x-auto scrollbar-none">
+        <div
+          className="grid gap-[3px] min-w-[720px] pr-2"
+          style={{
+            gridTemplateColumns: "repeat(52, minmax(0, 1fr))",
+            gridTemplateRows: "repeat(7, 1fr)",
+            gridAutoFlow: "column",
+          }}
+        >
+          {cells.map((v, i) => (
+            <div key={i} className={`aspect-square rounded-[2px] ${shades[v]}`} />
+          ))}
+        </div>
       </div>
       <div className="flex items-center justify-between mt-3 text-[10px] tracking-[0.15em] text-muted-foreground">
         <span>{total} CONTRIBUTIONS · 2025-26</span>

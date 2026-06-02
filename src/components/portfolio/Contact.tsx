@@ -1,9 +1,24 @@
-import { Calendar, Mail, Twitter, ArrowUpRight, ArrowRight, Clock, Check } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowUpRight, ArrowRight, Clock, Check } from "lucide-react";
 
 const options = [
-  { icon: Calendar, title: "Schedule a free call", subtitle: "30-minute strategy session", href: "#" },
-  { icon: Mail, title: "bharatdhuva27@gmail.com", subtitle: "Quick inquiries & questions", href: "mailto:bharatdhuva27@gmail.com" },
-  { icon: Twitter, title: "Connect on X", subtitle: "Follow for updates & insights", href: "#" },
+  {
+    icon: Mail,
+    title: "bharatdhuva27@gmail.com",
+    subtitle: "Quick inquiries & questions",
+    href: "mailto:bharatdhuva27@gmail.com",
+  },
+  {
+    icon: Linkedin,
+    title: "Connect on LinkedIn",
+    subtitle: "linkedin.com/in/bharatdhuva27",
+    href: "https://linkedin.com/in/bharatdhuva27",
+  },
+  {
+    icon: Github,
+    title: "Follow on GitHub",
+    subtitle: "github.com/bharatdhuva",
+    href: "https://github.com/bharatdhuva",
+  },
 ];
 
 export function Contact() {
@@ -35,8 +50,12 @@ export function Contact() {
             ))}
           </div>
           <div className="mt-4 space-y-1.5 text-xs text-muted-foreground">
-            <div className="flex items-center gap-1.5"><Clock className="h-3 w-3" /> Replies within 24 hours</div>
-            <div className="flex items-center gap-1.5"><Check className="h-3 w-3" /> Open to remote, freelance & Full-time</div>
+            <div className="flex items-center gap-1.5">
+              <Clock className="h-3 w-3" /> Replies within 24 hours
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Check className="h-3 w-3" /> Open to remote, freelance & Full-time
+            </div>
           </div>
         </div>
 

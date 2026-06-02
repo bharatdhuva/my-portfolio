@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Components", href: "#projects" },
+  { label: "Projects", href: "#projects" },
 ];
 
 export function Navbar() {
@@ -12,7 +12,8 @@ export function Navbar() {
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    const isDark = stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const isDark =
+      stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
   }, []);
@@ -30,7 +31,10 @@ export function Navbar() {
         <ul className="flex items-center gap-6 text-sm">
           {links.map((l) => (
             <li key={l.label}>
-              <a href={l.href} className="text-foreground/80 hover:text-foreground transition-colors">
+              <a
+                href={l.href}
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
                 {l.label}
               </a>
             </li>

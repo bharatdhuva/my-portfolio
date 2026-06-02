@@ -5,6 +5,7 @@ import { ContributionHeatmap } from "@/components/portfolio/ContributionHeatmap"
 import { TechStack } from "@/components/portfolio/TechStack";
 import { Projects } from "@/components/portfolio/Projects";
 import { Experience } from "@/components/portfolio/Experience";
+import { Education } from "@/components/portfolio/Education";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
 
@@ -12,9 +13,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Bharat Dhuva — Full Stack Developer" },
-      { name: "description", content: "Personal portfolio of Bharat Dhuva, a full-stack developer building polished web products." },
+      {
+        name: "description",
+        content:
+          "Personal portfolio of Bharat Dhuva, a full-stack developer building polished web products.",
+      },
       { property: "og:title", content: "Bharat Dhuva — Full Stack Developer" },
-      { property: "og:description", content: "Personal portfolio of Bharat Dhuva, a full-stack developer building polished web products." },
+      {
+        property: "og:description",
+        content:
+          "Personal portfolio of Bharat Dhuva, a full-stack developer building polished web products.",
+      },
     ],
   }),
   component: Index,
@@ -30,6 +39,7 @@ function Index() {
         <TechStack />
         <Projects />
         <Experience />
+        <Education />
         <Contact />
         <Footer />
       </main>
