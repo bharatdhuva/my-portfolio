@@ -18,8 +18,8 @@ export function Hero() {
       setTimeout(() => {
         setCurrentRoleIndex((prev) => (prev + 1) % ROLES.length);
         setIsTransitioning(false);
-      }, 300);
-    }, 3000);
+      }, 600); // Wait for the 600ms blur-out transition
+    }, 3500); // Total cycle duration (including transition time)
 
     return () => clearInterval(interval);
   }, []);
@@ -33,11 +33,12 @@ export function Hero() {
         <div>
           <h1 className="text-3xl font-medium tracking-tight text-foreground">Bharat Dhuva</h1>
           <p
-            className={`text-sm text-muted-foreground mt-0.5 transition-all duration-300 ease-in-out ${
-              isTransitioning
-                ? "opacity-0 blur-sm scale-95"
-                : "opacity-100 blur-none scale-100"
-            }`}
+            style={{
+              transition: "filter 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 600ms cubic-bezier(0.4, 0, 0.2, 1)",
+              filter: isTransitioning ? "blur(8px)" : "blur(0px)",
+              opacity: isTransitioning ? 0.1 : 1,
+            }}
+            className="text-sm text-muted-foreground mt-0.5 select-none"
           >
             {ROLES[currentRoleIndex]}
           </p>
