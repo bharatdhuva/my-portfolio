@@ -46,58 +46,63 @@ export function Projects() {
         {projects.map((p) => (
           <article
             key={p.name}
-            className="rounded-lg border border-border overflow-hidden bg-card hover:border-foreground/20 transition-colors group"
+            className="rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200 group overflow-hidden"
           >
-            {/* Thumbnail */}
-            <div className="relative aspect-[16/10] overflow-hidden">
+            {/* ── Thumbnail ── */}
+            <div className="bg-muted/50 border-b border-border p-3">
               {p.image ? (
-                <>
+                <div className="overflow-hidden rounded-md border border-border/60 shadow-sm">
                   <img
                     src={p.image}
                     alt={`${p.name} screenshot`}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.02]"
                   />
-                  {/* subtle gradient overlay at bottom for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                  <span className="absolute bottom-3 left-3 text-[11px] font-medium text-white/80 tracking-wide">
+                </div>
+              ) : (
+                /* Gradient fallback for Bookstage */
+                <div
+                  className={`rounded-md aspect-[16/10] bg-gradient-to-br ${p.gradient} flex items-center justify-center`}
+                >
+                  <span className="text-white/90 font-medium text-sm text-center px-4 leading-snug">
                     {p.accent}
                   </span>
-                </>
-              ) : (
-                <div
-                  className={`w-full h-full bg-gradient-to-br ${p.gradient} flex items-center justify-center p-6`}
-                >
-                  <div className="text-center text-white/90 font-medium text-sm leading-snug">
-                    {p.accent}
-                  </div>
                 </div>
               )}
             </div>
 
-            {/* Card body */}
+            {/* ── Card body ── */}
             <div className="p-4">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-foreground">{p.name}</h3>
-                <div className="flex items-center gap-1.5 text-muted-foreground">
+                <h3 className="text-sm font-semibold text-foreground">{p.name}</h3>
+                <div className="flex items-center gap-2 text-muted-foreground">
                   {p.links.includes("github") && (
                     <a
                       href="https://github.com/bharatdhuva"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`${p.name} GitHub`}
                       className="hover:text-foreground transition-colors"
                     >
                       <Github className="h-3.5 w-3.5" />
                     </a>
                   )}
                   {p.links.includes("globe") && (
-                    <a href="#" className="hover:text-foreground transition-colors">
+                    <a
+                      href="#"
+                      aria-label={`${p.name} live site`}
+                      className="hover:text-foreground transition-colors"
+                    >
                       <Globe className="h-3.5 w-3.5" />
                     </a>
                   )}
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-4">{p.description}</p>
-              <div className="flex items-center gap-3">
+
+              <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                {p.description}
+              </p>
+
+              <div className="flex items-center gap-2.5 flex-wrap">
                 {p.tech.map((t) => (
                   <div
                     key={t}
