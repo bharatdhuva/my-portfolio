@@ -26,8 +26,8 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/50">
-      <nav className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+    <header className="glass-nav">
+      <nav className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
         <ul className="flex items-center gap-6 text-sm">
           {links.map((l) => (
             <li key={l.label}>

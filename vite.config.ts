@@ -13,6 +13,9 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
   ],
+  server: {
+    host: true,
+  },
   resolve: {
     alias: {
       "@": "/src",

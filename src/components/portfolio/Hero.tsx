@@ -23,7 +23,7 @@ export function Hero() {
   }, [visible]);
 
   return (
-    <section id="home" className="pt-16 pb-10">
+    <section id="home" className="relative pt-16 pb-10">
       <style>{`
         @keyframes roleIn {
           from { opacity: 0; filter: blur(6px); transform: translateY(6px); }
@@ -35,6 +35,7 @@ export function Hero() {
         }
         .role-in  { animation: roleIn  420ms cubic-bezier(0,0,0.2,1) forwards; }
         .role-out { animation: roleOut 380ms cubic-bezier(0.4,0,1,1) forwards; }
+        .bg-lines { background-image: repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 24px); }
       `}</style>
 
       <div className="flex items-center gap-4 mb-8">
@@ -57,6 +58,10 @@ export function Hero() {
         </div>
       </div>
 
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div className="h-full w-full bg-lines opacity-60 dark:opacity-30" />
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <Meta label="LOCATION" icon={<MapPin className="h-3.5 w-3.5" />} value="Vadodara, India" />
         <Meta
@@ -65,7 +70,6 @@ export function Hero() {
           value="bharatdhuva27@gmail.com"
           href="mailto:bharatdhuva27@gmail.com"
         />
-        <Meta label="PRONOUNS" icon={<User className="h-3.5 w-3.5" />} value="he/him" />
       </div>
 
       <p className="text-sm text-foreground/80 leading-relaxed max-w-2xl mb-6">

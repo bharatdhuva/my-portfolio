@@ -37,7 +37,7 @@ export function Projects() {
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-5">
         FEATURED PROJECTS
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {projects.map((p) => (
           <article
             key={p.name}
