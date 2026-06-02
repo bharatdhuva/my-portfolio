@@ -28,9 +28,8 @@ export function Education() {
             <div>
               <div className="flex items-baseline justify-between gap-4 flex-wrap mb-1">
                 <div className="text-sm text-foreground">
-                  <span className="font-medium">{item.degree}</span>
-                  <span className="text-muted-foreground"> · </span>
-                  <span className="text-foreground/80">{item.institution}</span>
+                  <span className="font-medium block">{item.degree}</span>
+                  <span className="text-muted-foreground/80 text-xs">{item.institution}</span>
                 </div>
                 <div className="text-xs text-muted-foreground">{item.range}</div>
               </div>
