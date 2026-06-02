@@ -38,14 +38,14 @@ export function Hero() {
         .bg-lines { background-image: repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 24px); }
       `}</style>
 
-      <div className="flex items-center gap-4 mb-8">
+      <div className="flex items-center gap-3 sm:gap-4 mb-8 min-w-0">
         <img
           src="/download (2).jpg"
           alt="Bharat Dhuva"
-          className="h-12 w-12 rounded-md object-cover  border border-border shadow-sm"
+          className="h-11 w-11 sm:h-12 sm:w-12 flex-shrink-0 rounded-md object-cover border border-border shadow-sm"
         />
-        <div>
-          <h1 className="text-3xl font-medium tracking-tight text-foreground">Bharat Dhuva</h1>
+        <div className="min-w-0">
+          <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground leading-tight">Bharat Dhuva</h1>
 
           <div className="relative mt-0.5" style={{ height: "1.25rem" }}>
             <span
@@ -62,7 +62,7 @@ export function Hero() {
         <div className="h-full w-full bg-lines opacity-60 dark:opacity-30" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
         <Meta label="LOCATION" icon={<MapPin className="h-3.5 w-3.5" />} value="Vadodara, India" />
         <Meta
           label="EMAIL"
@@ -72,7 +72,7 @@ export function Hero() {
         />
       </div>
 
-      <p className="text-sm text-foreground/80 leading-relaxed max-w-2xl mb-6">
+      <p className="text-sm text-foreground/80 leading-relaxed max-w-2xl mb-6 break-words">
         Full-stack developer with a backend-first mindset. I build APIs that don't
         break, systems that scale, and products that actually ship. Currently working
         with Node.js · Express · Redis · Cloud. <br />
@@ -81,7 +81,7 @@ export function Hero() {
 
       <SpotifyStatus />
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center flex-wrap gap-4">
         {[
           {
             label: "X (Twitter)",
@@ -237,7 +237,7 @@ function SpotifyStatus() {
         {data.isPlaying ? "Now Playing" : "Last Played"}
       </span>
       <span>—</span>
-      <span className="text-foreground/70 truncate max-w-[200px] sm:max-w-[300px]">
+      <span className="text-foreground/70 truncate max-w-[160px] xs:max-w-[220px] sm:max-w-[320px]">
         {data.title} · {data.artist}
       </span>
     </div>
