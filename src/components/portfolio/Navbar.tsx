@@ -12,8 +12,8 @@ export function Navbar() {
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    const isDark =
-      stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    // Default to light mode; only go dark if user explicitly chose dark before
+    const isDark = stored === "dark";
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
   }, []);
