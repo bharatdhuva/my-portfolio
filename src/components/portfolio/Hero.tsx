@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapPin, Mail, User, Github, Globe, Twitter } from "lucide-react";
 
-const ROLES = ["Software Developer", "Curiwous Builder", "Product Engineer"];
+const ROLES = ["Software Developer", "Curious Builder", "Product Engineer"];
 
 export function Hero() {
   const [index, setIndex] = useState(0);
