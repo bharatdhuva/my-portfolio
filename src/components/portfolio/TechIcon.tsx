@@ -257,11 +257,11 @@ export function TechIcon({ name, className = "h-5 w-5", showTooltip = true }: Te
   }
 
   return (
-    <div className="relative group inline-flex items-center justify-center">
+    <div className="relative group/icon inline-flex items-center justify-center">
       {iconNode}
       
       {/* Animated Dark Tooltip */}
-      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 text-[11px] font-medium font-sans rounded bg-zinc-900 dark:bg-zinc-800 text-zinc-100 shadow-md opacity-0 translate-y-1 pointer-events-none transition-all duration-150 ease-out z-50 group-hover:opacity-100 group-hover:translate-y-0 border border-zinc-800 dark:border-zinc-700/50 whitespace-nowrap">
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 text-[11px] font-medium font-sans rounded bg-zinc-900 dark:bg-zinc-800 text-zinc-100 shadow-md opacity-0 translate-y-1 pointer-events-none transition-all duration-150 ease-out z-50 group-hover/icon:opacity-100 group-hover/icon:translate-y-0 border border-zinc-800 dark:border-zinc-700/50 whitespace-nowrap">
         {fullName}
         <div className="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-zinc-900 dark:border-t-zinc-800" />
       </div>
