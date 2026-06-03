@@ -104,7 +104,6 @@ const slugMap: Record<string, string> = {
   POSTMAN: "postman",
   K8S: "kubernetes",
   KUBERNETES: "kubernetes",
-  BQ: "bull-queue",
 };
 
 // Dark/black brand logos from Simple Icons or Devicon that need inversion in dark mode

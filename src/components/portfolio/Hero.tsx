@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapPin, Mail, User, Github, Globe, Twitter } from "lucide-react";
 
-const ROLES = ["Full-Stack Developer", "Real-Time Systems Builder", "AI Automator", "CS Student"];
+const ROLES = ["Software Developer", "Curious Builder", "Product Engineer"];
 
 export function Hero() {
   const [index, setIndex] = useState(0);
@@ -102,11 +102,11 @@ export function Hero() {
             label: "LinkedIn",
             href: "https://linkedin.com/in/bharatdhuva27",
             icon: (
-              <img 
-                src="https://api.iconify.design/logos:linkedin-icon.svg" 
-                alt="LinkedIn" 
-                width="18" 
-                height="18" 
+              <img
+                src="https://api.iconify.design/logos:linkedin-icon.svg"
+                alt="LinkedIn"
+                width="18"
+                height="18"
                 className="grayscale group-hover:grayscale-0 transition-all duration-150 opacity-80 group-hover:opacity-100"
               />
             ),
