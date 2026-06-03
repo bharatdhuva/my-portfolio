@@ -76,7 +76,7 @@ export function Hero() {
         Full-stack developer with a backend-first mindset. I build APIs that don't
         break, systems that scale, and products that actually ship. Currently working
         with Node.js · Express · Redis · Cloud. <br />
-        Open - Internship | Freelance | Remote | Full-Timewe Roles.
+        Open - Internship | Freelance | Remote | Full-Time JObs Roles.
       </p>
 
       <SpotifyStatus />
