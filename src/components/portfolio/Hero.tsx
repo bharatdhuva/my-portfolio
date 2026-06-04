@@ -240,6 +240,12 @@ function SpotifyStatus() {
 
         if (!lastCompletedTrack) return;
 
+        const isUptown = lastCompletedTrack.name?.toLowerCase().includes("uptown funk");
+        if (isUptown) {
+          setData(null);
+          return;
+        }
+
         setData({
           title: lastCompletedTrack.name || "Unknown",
           artist: lastCompletedTrack.artist?.["#text"] || "Unknown",
