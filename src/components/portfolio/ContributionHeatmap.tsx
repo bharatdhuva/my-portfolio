@@ -71,7 +71,7 @@ export function ContributionHeatmap() {
   }
 
   return (
-    <section className="py-4 my-6 bg-background">
+    <section className="py-8">
       {/* Custom styles for intermediate zinc values in tailwind v4 context if needed, otherwise fallback */}
       <style>{`
         .bg-contrib-0 { background-color: #f1f5f9; }

@@ -43,7 +43,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="pt-4 pb-8 mt-6 bg-background">
+    <footer className="pt-12 pb-8 border-t border-border mt-12">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center mb-10">
         <div className="flex gap-3">
           <Quote className="h-5 w-5 text-muted-foreground/60 shrink-0" />

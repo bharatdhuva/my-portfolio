@@ -19,7 +19,7 @@ const items = [
 
 export function Experience() {
   return (
-    <section className="py-4 my-6 bg-background">
+    <section className="py-10">
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-6">
         EXPERIENCE
       </h2>

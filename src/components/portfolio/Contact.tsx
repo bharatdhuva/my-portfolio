@@ -163,7 +163,7 @@ function LearningBoard() {
 
 export function Contact() {
   return (
-    <section id="contact" className="py-4 my-6 bg-background">
+    <section id="contact" className="py-12">
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-6">
         LET'S WORK TOGETHER
       </h2>

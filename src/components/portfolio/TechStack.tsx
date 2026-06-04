@@ -26,7 +26,7 @@ const techs = [
 
 export function TechStack() {
   return (
-    <section id="about" className="py-4 my-6 bg-background">
+    <section id="about" className="py-10">
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-5">
         TECH STACK
       </h2>
