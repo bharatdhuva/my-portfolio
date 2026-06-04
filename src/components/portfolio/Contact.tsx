@@ -1,13 +1,4 @@
-import {
-  Mail,
-  ArrowUpRight,
-  Clock,
-  Check,
-  Server,
-  Code,
-  Terminal,
-  BookOpen,
-} from "lucide-react";
+import { Mail, ArrowUpRight, Clock, Check, Server, Code, Terminal, BookOpen } from "lucide-react";
 
 const options = [
   {
