@@ -24,16 +24,7 @@ const projects = [
     tech: ["Re", "Nd", "Rd", "Bq", "G4"],
     links: ["github"],
   },
-  {
-    name: "Bookstage",
-    description:
-      "Engineered an end-to-end booking platform with movie/event/sports discovery, seat selection, a 5-minute expiry seat locking engine, QR ticket confirmations, and modular REST API.",
-    gradient: "from-teal-600 via-emerald-700 to-slate-800",
-    accent: "Seat-Locking Ticketing Engine",
-    image: null,
-    tech: ["Re", "An", "Ss", "Dk", "Jw"],
-    links: ["github"],
-  },
+
 ];
 
 export function Projects() {

@@ -1,10 +1,46 @@
-import { Quote, Linkedin, Mail, Github } from "lucide-react";
+import { Quote, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const socialLinks = [
-  { Icon: Linkedin, href: "https://linkedin.com/in/bharatdhuva27" },
-  { Icon: Mail, href: "mailto:bharatdhuva27@gmail.com" },
-  { Icon: Github, href: "https://github.com/bharatdhuva" },
+  {
+    icon: (className: string) => (
+      <img
+        src="https://api.iconify.design/logos:linkedin-icon.svg"
+        alt="LinkedIn"
+        className={className}
+        loading="lazy"
+      />
+    ),
+    href: "https://linkedin.com/in/bharatdhuva27",
+  },
+  {
+    icon: (className: string) => (
+      <img
+        src="https://cdn.simpleicons.org/x"
+        alt="X"
+        className={`${className} dark:invert`}
+        loading="lazy"
+      />
+    ),
+    href: "https://x.com/mrcrotes",
+  },
+  {
+    icon: (className: string) => (
+      <img
+        src="https://cdn.simpleicons.org/github"
+        alt="GitHub"
+        className={`${className} dark:invert`}
+        loading="lazy"
+      />
+    ),
+    href: "https://github.com/bharatdhuva",
+  },
+  {
+    icon: (className: string) => (
+      <Mail className={`${className} text-muted-foreground`} />
+    ),
+    href: "mailto:bharatdhuva27@gmail.com",
+  },
 ];
 
 export function Footer() {
@@ -29,15 +65,19 @@ export function Footer() {
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-border text-xs text-muted-foreground">
         <div>© 2026 Bharat Dhuva.</div>
         <nav className="flex items-center gap-5">
-          <a href="#about" className="hover:text-foreground transition-colors">
-            About
+          <a href="#home" className="hover:text-foreground transition-colors">
+            Home
           </a>
+
           <a href="#projects" className="hover:text-foreground transition-colors">
             Projects
           </a>
+          <a href="#contact" className="hover:text-foreground transition-colors">
+            Contact
+          </a>
         </nav>
         <div className="flex items-center gap-1">
-          {socialLinks.map(({ Icon, href }, i) => (
+          {socialLinks.map(({ icon: renderIcon, href }, i) => (
             <a
               key={i}
               href={href}
@@ -45,7 +85,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="p-1.5 rounded-md hover:bg-muted hover:text-foreground transition-colors"
             >
-              <Icon className="h-3.5 w-3.5" />
+              {renderIcon("h-3.5 w-3.5 flex-shrink-0")}
             </a>
           ))}
         </div>
@@ -60,7 +100,7 @@ function VisitorCounter() {
   useEffect(() => {
     // Check if they've already visited in this specific tab/session
     const hasVisited = sessionStorage.getItem("hasVisited");
-    
+
     // Set it immediately so React Strict Mode double-mounts don't fire twice
     if (!hasVisited) {
       sessionStorage.setItem("hasVisited", "true");
