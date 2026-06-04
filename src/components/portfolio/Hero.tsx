@@ -210,23 +210,66 @@ function Meta({
 }
 
 function SpotifyStatus() {
-  const [data, setData] = useState<{ isPlaying: boolean; title: string; artist: string } | null>({
-    isPlaying: true,
-    title: "El Matador",
-    artist: "Seedhe Maut, Hurricane",
-  });
+  const [data, setData] = useState<{
+    isPlaying: boolean;
+    title: string;
+    artist: string;
+    albumArt?: string;
+    url?: string;
+  } | null>(null);
 
-  // TODO: Replace with your actual Spotify API call here
-  // useEffect(() => {
-  //   fetch('YOUR_API_ENDPOINT').then(r => r.json()).then(setData);
-  // }, []);
+  useEffect(() => {
+    const LASTFM_API_KEY = "17be11e18927c09ab20c784c621e8e44";
+    const LASTFM_USER = "bharatdhuva";
+
+    const fetchNowPlaying = async () => {
+      try {
+        const res = await fetch(
+          `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=1`
+        );
+        const json = await res.json();
+        const track = json?.recenttracks?.track?.[0];
+        if (!track) return;
+
+        const nowPlaying = track["@attr"]?.nowplaying === "true";
+        setData({
+          isPlaying: nowPlaying,
+          title: track.name || "Unknown",
+          artist: track.artist?.["#text"] || "Unknown",
+          albumArt: track.image?.[2]?.["#text"] || undefined,
+          url: track.url || undefined,
+        });
+      } catch (err) {
+        console.error("Last.fm fetch failed:", err);
+      }
+    };
+
+    fetchNowPlaying();
+    const interval = setInterval(fetchNowPlaying, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (!data) return null;
 
-  return (
+  const inner = (
     <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 min-w-0 w-full">
+      <style>{`
+        @keyframes nowPlayingPulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+      `}</style>
+      {data.albumArt && (
+        <img
+          src={data.albumArt}
+          alt="Album art"
+          className="w-5 h-5 rounded-sm shrink-0 shadow-sm"
+        />
+      )}
       <span className="flex items-center gap-1.5 text-[#1DB954] font-medium shrink-0">
-        <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"
+          style={data.isPlaying ? { animation: "nowPlayingPulse 2s ease-in-out infinite" } : undefined}
+        >
           <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.24 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
         </svg>
         {data.isPlaying ? "Now Playing" : "Last Played"}
@@ -237,4 +280,10 @@ function SpotifyStatus() {
       </span>
     </div>
   );
+
+  return data.url ? (
+    <a href={data.url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline decoration-muted-foreground underline-offset-2 transition-all">
+      {inner}
+    </a>
+  ) : inner;
 }
