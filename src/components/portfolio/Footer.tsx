@@ -34,11 +34,7 @@ const socialLinks = [
       />
     ),
     href: "https://github.com/bharatdhuva",
-  },
-  {
-    icon: (className: string) => <Mail className={`${className} text-muted-foreground`} />,
-    href: "mailto:bharatdhuva27@gmail.com",
-  },
+  }
 ];
 
 export function Footer() {
