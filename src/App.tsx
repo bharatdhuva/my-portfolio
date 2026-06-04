@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/portfolio/Navbar";
 import { Hero } from "@/components/portfolio/Hero";
 import { ContributionHeatmap } from "@/components/portfolio/ContributionHeatmap";
-import { GitHubStats } from "@/components/portfolio/GitHubStats";
 import { TechStack } from "@/components/portfolio/TechStack";
 import { Projects } from "@/components/portfolio/Projects";
 import { Experience } from "@/components/portfolio/Experience";
@@ -29,7 +28,6 @@ function App() {
       <Navbar />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         <Hero />
-        <GitHubStats />
         <ContributionHeatmap />
         <TechStack />
         <Projects />

@@ -2,6 +2,7 @@ import { Github, Globe } from "lucide-react";
 import { TechIcon } from "./TechIcon";
 import interviewosImg from "../assets/interviewos.png";
 import outlyImg from "../assets/outly.png";
+import bookstageImg from "../assets/image.png";
 
 interface Project {
   name: string;
@@ -34,6 +35,16 @@ const projects: Project[] = [
     image: outlyImg,
     tech: ["Re", "Nd", "Rd", "Bq", "G4"],
     github: "https://github.com/bharatdhuva/Outly",
+  },
+  {
+    name: "Bookstage",
+    description:
+      "Built an end-to-end booking platform featuring movie/event/sports discovery, seat selection, and QR ticket confirmation with PDF download. Engineered a custom seat locking engine with a 5-minute expiry and auto-cleanup, and a modular REST API across 10+ modules with JWT authentication and Dockerized deployment.",
+    gradient: "from-blue-600 via-indigo-700 to-cyan-600",
+    accent: "Full-Stack Ticket Booking Platform",
+    image: bookstageImg,
+    tech: ["Re", "An", "Ss", "Dk", "Jw"],
+    github: "https://github.com/bharatdhuva/Bookstage",
   },
 ];
 
