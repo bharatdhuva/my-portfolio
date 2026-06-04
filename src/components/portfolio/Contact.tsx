@@ -3,7 +3,6 @@ import {
   ArrowUpRight,
   Clock,
   Check,
-  FileText,
   Server,
   Code,
   Terminal,
@@ -55,13 +54,6 @@ const options = [
     title: "bharatdhuva27@gmail.com",
     subtitle: "Quick inquiries & questions",
     href: "mailto:bharatdhuva27@gmail.com",
-  },
-  {
-    icon: (className: string) => <FileText className={`${className} text-muted-foreground`} />,
-    title: "Download Resume",
-    subtitle: "Curriculum Vitae (PDF)",
-    href: "/Bharat_Dhuva_Resume.pdf",
-    download: "Bharat_Dhuva_Resume.pdf",
   },
 ];
 
