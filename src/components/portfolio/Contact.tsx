@@ -181,7 +181,7 @@ export function Contact() {
                   key={title}
                   href={href}
                   download={download}
-                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  target={download ? undefined : href.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 rounded-md border border-border hover:bg-muted transition-colors group"
                 >
