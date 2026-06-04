@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { MapPin, Mail, User, Github, Globe, Twitter } from "lucide-react";
+import profileImg from "../assets/“Peace Feels Better in Nature 🍃”.jpg";
 
 const ROLES = ["Software Developer", "Curious Builder", "Product Engineer"];
 
@@ -39,7 +40,7 @@ export function Hero() {
 
       <div className="flex items-center gap-4 sm:gap-4 mb-8 min-w-0">
         <img
-          src="/download (2).jpg"
+          src={profileImg}
           alt="Bharat Dhuva"
           className="h-12 w-12 sm:h-12 sm:w-13 flex-shrink-0 rounded-md object-cover border border-border shadow-sm"
         />
