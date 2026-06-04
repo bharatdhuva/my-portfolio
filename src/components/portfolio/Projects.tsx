@@ -39,7 +39,7 @@ const projects: Project[] = [
 
 export function Projects() {
   return (
-    <section id="projects" className="py-10">
+    <section id="projects" className="py-4 my-6 bg-background">
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-5">
         FEATURED PROJECTS
       </h2>
@@ -101,16 +101,11 @@ export function Projects() {
                 </div>
               </div>
 
-              <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-                {p.description}
-              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-4">{p.description}</p>
 
               <div className="flex items-center gap-2.5 flex-wrap">
                 {p.tech.map((t) => (
-                  <div
-                    key={t}
-                    className="transition-transform duration-150 hover:scale-110"
-                  >
+                  <div key={t} className="transition-transform duration-150 hover:scale-110">
                     <TechIcon name={t} className="h-5 w-5" />
                   </div>
                 ))}

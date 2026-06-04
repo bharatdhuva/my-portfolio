@@ -19,7 +19,7 @@ const items = [
 
 export function Experience() {
   return (
-    <section className="py-10">
+    <section className="py-4 my-6 bg-background">
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-6">
         EXPERIENCE
       </h2>
@@ -54,10 +54,7 @@ export function Experience() {
               {it.tech.length > 0 && (
                 <div className="flex items-center gap-3">
                   {it.tech.map((t) => (
-                    <div
-                      key={t}
-                      className="transition-transform duration-150 hover:scale-110"
-                    >
+                    <div key={t} className="transition-transform duration-150 hover:scale-110">
                       <TechIcon name={t} className="h-5 w-5" />
                     </div>
                   ))}

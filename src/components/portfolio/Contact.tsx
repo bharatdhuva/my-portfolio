@@ -1,4 +1,14 @@
-import { Mail, ArrowUpRight, Clock, Check, FileText, Server, Code, Terminal, BookOpen } from "lucide-react";
+import {
+  Mail,
+  ArrowUpRight,
+  Clock,
+  Check,
+  FileText,
+  Server,
+  Code,
+  Terminal,
+  BookOpen,
+} from "lucide-react";
 
 const options = [
   {
@@ -41,17 +51,13 @@ const options = [
     href: "https://github.com/bharatdhuva",
   },
   {
-    icon: (className: string) => (
-      <Mail className={`${className} text-muted-foreground`} />
-    ),
+    icon: (className: string) => <Mail className={`${className} text-muted-foreground`} />,
     title: "bharatdhuva27@gmail.com",
     subtitle: "Quick inquiries & questions",
     href: "mailto:bharatdhuva27@gmail.com",
   },
   {
-    icon: (className: string) => (
-      <FileText className={`${className} text-muted-foreground`} />
-    ),
+    icon: (className: string) => <FileText className={`${className} text-muted-foreground`} />,
     title: "Download Resume",
     subtitle: "Curriculum Vitae (PDF)",
     href: "/Bharat_Dhuva_Resume.pdf",
@@ -88,13 +94,13 @@ function LearningBoard() {
   ];
 
   return (
-    <div className="rounded-lg border border-border p-5 flex flex-col justify-between h-full min-h-[440px] md:min-h-0">
+    <div className="rounded-lg border border-border p-5 flex flex-col justify-between h-full min-h-0 md:min-h-[440px]">
       <div>
         {/* Header */}
         <div className="flex items-center justify-between mb-4 border-b border-border pb-3 select-none">
           <div>
             <h3 className="text-base font-medium text-foreground">Currently Learning & Building</h3>
-            <p className="text-[11px] text-muted-foreground">Exploring new tech &  core concepts</p>
+            <p className="text-[11px] text-muted-foreground">Exploring new tech & core concepts</p>
           </div>
         </div>
 
@@ -116,13 +122,13 @@ function LearningBoard() {
                       {item.title}
                     </span>
                   </div>
-                  <span className={`px-2 py-0.5 rounded-full border text-[9px] font-medium leading-none ${item.statusColor}`}>
+                  <span
+                    className={`px-2 py-0.5 rounded-full border text-[9px] font-medium leading-none ${item.statusColor}`}
+                  >
                     {item.status}
                   </span>
                 </div>
-                <p className="text-[11px] text-muted-foreground leading-relaxed">
-                  {item.desc}
-                </p>
+                <p className="text-[11px] text-muted-foreground leading-relaxed">{item.desc}</p>
                 <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
                   {item.tags.map((tag) => (
                     <span
@@ -144,7 +150,10 @@ function LearningBoard() {
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <BookOpen className="h-3.5 w-3.5 text-foreground/75 shrink-0" />
           <span>
-            Currently reading: <strong className="text-foreground font-medium">Designing Data-Intensive Applications</strong>
+            Currently reading:{" "}
+            <strong className="text-foreground font-medium">
+              Designing Data-Intensive Applications
+            </strong>
           </span>
         </div>
       </div>
@@ -154,7 +163,7 @@ function LearningBoard() {
 
 export function Contact() {
   return (
-    <section id="contact" className="py-12">
+    <section id="contact" className="py-4 my-6 bg-background">
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-6">
         LET'S WORK TOGETHER
       </h2>
@@ -177,9 +186,9 @@ export function Contact() {
                   className="flex items-center gap-3 p-3 rounded-md border border-border hover:bg-muted transition-colors group"
                 >
                   {renderIcon("h-[18px] w-[18px] flex-shrink-0")}
-                  <div className="flex-1">
-                    <div className="text-sm text-foreground">{title}</div>
-                    <div className="text-xs text-muted-foreground">{subtitle}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm text-foreground break-all">{title}</div>
+                    <div className="text-xs text-muted-foreground break-words">{subtitle}</div>
                   </div>
                   <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-foreground" />
                 </a>

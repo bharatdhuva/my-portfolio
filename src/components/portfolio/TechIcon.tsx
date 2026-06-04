@@ -107,7 +107,16 @@ const slugMap: Record<string, string> = {
 };
 
 // Dark/black brand logos from Simple Icons or Devicon that need inversion in dark mode
-const darkInvertSlugs = ["express", "socketdotio", "webrtc", "jsonwebtokens", "github", "openai", "express/express-original", "github/github-original"];
+const darkInvertSlugs = [
+  "express",
+  "socketdotio",
+  "webrtc",
+  "jsonwebtokens",
+  "github",
+  "openai",
+  "express/express-original",
+  "github/github-original",
+];
 
 const fullNameMap: Record<string, string> = {
   JS: "JavaScript",
@@ -194,7 +203,7 @@ export function TechIcon({ name, className = "h-5 w-5", showTooltip = true }: Te
     const slug = slugMap[norm];
     if (slug) {
       const isInverted = darkInvertSlugs.includes(slug);
-      
+
       // JS has a yellow square with transparent 'JS' text. Adding bg-black makes the letters show up black.
       // TS has a blue square with transparent 'TS' text. Adding bg-white makes the letters show up white.
       let bgStyle = "";
@@ -226,7 +235,12 @@ export function TechIcon({ name, className = "h-5 w-5", showTooltip = true }: Te
     } else if (norm === "J0" || norm === "JUDGE0") {
       // Fallbacks for custom integrations
       iconNode = (
-        <svg role="img" viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+        <svg
+          role="img"
+          viewBox="0 0 24 24"
+          className={className}
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M4 2h16c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm2 6v8l4-4zm6 5.5l1-1h6v1zm0-3h7v1h-7zm0-3h7v1h-7z"
             fill="#607D8B"
@@ -235,7 +249,12 @@ export function TechIcon({ name, className = "h-5 w-5", showTooltip = true }: Te
       );
     } else if (norm === "BQ" || norm === "BULL QUEUE" || norm === "BULL") {
       iconNode = (
-        <svg role="img" viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+        <svg
+          role="img"
+          viewBox="0 0 24 24"
+          className={className}
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14H7v-2h6v2zm4-4H7v-2h10v2zm0-4H7V6h10v2z"
             fill="#6A7B83"
@@ -259,7 +278,7 @@ export function TechIcon({ name, className = "h-5 w-5", showTooltip = true }: Te
   return (
     <div className="relative group/icon inline-flex items-center justify-center">
       {iconNode}
-      
+
       {/* Animated Dark Tooltip */}
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 text-[11px] font-medium font-sans rounded bg-zinc-900 dark:bg-zinc-800 text-zinc-100 shadow-md opacity-0 translate-y-1 pointer-events-none transition-all duration-150 ease-out z-50 group-hover/icon:opacity-100 group-hover/icon:translate-y-0 border border-zinc-800 dark:border-zinc-700/50 whitespace-nowrap">
         {fullName}
@@ -268,5 +287,3 @@ export function TechIcon({ name, className = "h-5 w-5", showTooltip = true }: Te
     </div>
   );
 }
-
-

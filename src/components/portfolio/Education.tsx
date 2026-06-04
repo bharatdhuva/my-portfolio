@@ -15,7 +15,7 @@ const educationItems = [
 
 export function Education() {
   return (
-    <section className="py-10 border-t border-border/50">
+    <section className="py-4 my-6 bg-background">
       <h2 className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground mb-6">
         EDUCATION
       </h2>
