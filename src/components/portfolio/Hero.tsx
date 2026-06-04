@@ -275,15 +275,22 @@ function SpotifyStatus() {
         {data.isPlaying ? "Now Playing" : "Last Played"}
       </span>
       <span className="shrink-0">—</span>
-      <span className="text-foreground/70 truncate flex-1 min-w-0">
-        {data.title} · {data.artist}
-      </span>
+      {data.url ? (
+        <a
+          href={data.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-foreground/70 truncate flex-1 min-w-0 no-underline hover:underline decoration-muted-foreground underline-offset-2 transition-all"
+        >
+          {data.title} · {data.artist}
+        </a>
+      ) : (
+        <span className="text-foreground/70 truncate flex-1 min-w-0">
+          {data.title} · {data.artist}
+        </span>
+      )}
     </div>
   );
 
-  return data.url ? (
-    <a href={data.url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline decoration-muted-foreground underline-offset-2 transition-all">
-      {inner}
-    </a>
-  ) : inner;
+  return inner;
 }
