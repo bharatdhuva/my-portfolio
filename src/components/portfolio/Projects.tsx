@@ -3,7 +3,18 @@ import { TechIcon } from "./TechIcon";
 import interviewosImg from "../assets/interviewos.png";
 import outlyImg from "../assets/outly.png";
 
-const projects = [
+interface Project {
+  name: string;
+  description: string;
+  gradient: string;
+  accent: string;
+  image?: string;
+  tech: string[];
+  github?: string;
+  globe?: string;
+}
+
+const projects: Project[] = [
   {
     name: "InterviewOS",
     description:
@@ -12,7 +23,7 @@ const projects = [
     accent: "Real-Time Collaborative Interview Platform",
     image: interviewosImg,
     tech: ["Re", "Nd", "Mg", "Wc", "Io", "J0"],
-    links: ["github"],
+    github: "https://github.com/bharatdhuva/Interview-OS",
   },
   {
     name: "Outly",
@@ -22,9 +33,8 @@ const projects = [
     accent: "AI-Powered Career & Email Automation",
     image: outlyImg,
     tech: ["Re", "Nd", "Rd", "Bq", "G4"],
-    links: ["github"],
+    github: "https://github.com/bharatdhuva/Outly",
   },
-
 ];
 
 export function Projects() {
@@ -66,9 +76,9 @@ export function Projects() {
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-semibold text-foreground">{p.name}</h3>
                 <div className="flex items-center gap-2 text-muted-foreground">
-                  {p.links.includes("github") && (
+                  {p.github && (
                     <a
-                      href="https://github.com/bharatdhuva"
+                      href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${p.name} GitHub`}
@@ -77,9 +87,11 @@ export function Projects() {
                       <Github className="h-3.5 w-3.5" />
                     </a>
                   )}
-                  {p.links.includes("globe") && (
+                  {p.globe && (
                     <a
-                      href="#"
+                      href={p.globe}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={`${p.name} live site`}
                       className="hover:text-foreground transition-colors"
                     >
