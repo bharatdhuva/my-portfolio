@@ -35,7 +35,6 @@ export function Hero() {
         }
         .role-in  { animation: roleIn  420ms cubic-bezier(0,0,0.2,1) forwards; }
         .role-out { animation: roleOut 380ms cubic-bezier(0.4,0,1,1) forwards; }
-        .bg-lines { background-image: repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 24px); }
       `}</style>
 
       <div className="flex items-center gap-3 sm:gap-4 mb-8 min-w-0">
@@ -58,9 +57,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute inset-0 pointer-events-none -z-10">
-        <div className="h-full w-full bg-lines opacity-60 dark:opacity-30" />
-      </div>
+
 
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
         <Meta label="LOCATION" icon={<MapPin className="h-3.5 w-3.5" />} value="Vadodara, India" />

@@ -65,6 +65,7 @@
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
+  --grid-color: rgba(0, 0, 0, 0.05);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -100,6 +101,7 @@
 .dark {
   --background: oklch(0 0 0);
   --foreground: oklch(0.984 0.003 247.858);
+  --grid-color: rgba(255, 255, 255, 0.03);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.208 0.042 265.755);
@@ -141,8 +143,10 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -154,6 +158,7 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
+
   .scrollbar-none {
     scrollbar-width: none;
     -ms-overflow-style: none;

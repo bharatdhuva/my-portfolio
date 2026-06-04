@@ -88,13 +88,13 @@ function LearningBoard() {
   ];
 
   return (
-    <div className="rounded-lg border border-border p-5 flex flex-col justify-between bg-card h-full min-h-[440px] md:min-h-0">
+    <div className="rounded-lg border border-border p-5 flex flex-col justify-between h-full min-h-[440px] md:min-h-0">
       <div>
         {/* Header */}
         <div className="flex items-center justify-between mb-4 border-b border-border pb-3 select-none">
           <div>
             <h3 className="text-base font-medium text-foreground">Currently Learning & Building</h3>
-            <p className="text-[11px] text-muted-foreground">Exploring new tech & sharpening core concepts</p>
+            <p className="text-[11px] text-muted-foreground">Exploring new tech &  core concepts</p>
           </div>
         </div>
 

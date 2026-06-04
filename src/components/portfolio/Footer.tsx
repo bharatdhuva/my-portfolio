@@ -46,7 +46,7 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="pt-12 pb-8 border-t border-border mt-12">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center mb-10">
         <div className="flex gap-3">
           <Quote className="h-5 w-5 text-muted-foreground/60 shrink-0" />
           <div>
@@ -57,7 +57,7 @@ export function Footer() {
             <p className="text-xs text-muted-foreground mt-2">— Tony Robbins</p>
           </div>
         </div>
-        <div className="text-xs text-muted-foreground md:text-right">
+        <div className="text-xs text-muted-foreground md:pl-6 md:border-l md:border-border py-1">
           You are the <VisitorCounter /><sup>th</sup> visitor
         </div>
       </div>
