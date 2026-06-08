@@ -1,4 +1,4 @@
-import { Github, Globe } from "lucide-react";
+import { Github, ArrowUpRight } from "lucide-react";
 import { TechIcon } from "./TechIcon";
 import interviewosImg from "../assets/interviewos.png";
 import outlyImg from "../assets/outly.png";
@@ -25,6 +25,7 @@ const projects: Project[] = [
     image: interviewosImg,
     tech: ["Re", "Nd", "Mg", "Wc", "Io", "J0"],
     github: "https://github.com/bharatdhuva/Interview-OS",
+    globe: "https://interviewos-bharatdhuva.vercel.app/",
   },
   {
     name: "Outly",
@@ -86,7 +87,7 @@ export function Projects() {
             <div className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-semibold text-foreground">{p.name}</h3>
-                <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="flex items-center gap-3 text-muted-foreground">
                   {p.github && (
                     <a
                       href={p.github}
@@ -104,9 +105,10 @@ export function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${p.name} live site`}
-                      className="hover:text-foreground transition-colors"
+                      className="flex items-center gap-0.5 hover:text-foreground transition-colors text-xs font-medium"
                     >
-                      <Globe className="h-3.5 w-3.5" />
+                      <span>Live</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
                     </a>
                   )}
                 </div>
