@@ -1,6 +1,7 @@
 import { Github, ArrowUpRight } from "lucide-react";
 import { TechIcon } from "./TechIcon";
 import interviewosImg from "../assets/interviewos.png";
+import khetseImg from "../assets/khetse.png";
 import outlyImg from "../assets/outly.png";
 import bookstageImg from "../assets/image.png";
 
@@ -26,6 +27,17 @@ const projects: Project[] = [
     tech: ["Re", "Nd", "Mg", "Wc", "Io", "J0"],
     github: "https://github.com/bharatdhuva/Interview-OS",
     globe: "https://interviewos-bharatdhuva.vercel.app/",
+  },
+  {
+    name: "Khetse",
+    description:
+      "Direct-to-consumer farm-fresh delivery platform connecting local farmers directly with urban consumers for fresh vegetables and dairy products. Built with a React Native mobile application and a robust Node.js/Express backend.",
+    gradient: "from-green-600 via-emerald-700 to-teal-600",
+    accent: "Farm-to-Home Fresh Produce & Dairy Platform",
+    image: khetseImg,
+    tech: ["RN", "Nd", "Ex", "Mg", "Fb", "Au", "As"],
+    github: "https://github.com/bharatdhuva/Khetse---Farm-to-Home-",
+    globe: "https://khetse-fresh.vercel.app/",
   },
   {
     name: "Outly",
