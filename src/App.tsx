@@ -7,6 +7,7 @@ import { Experience } from "@/components/portfolio/Experience";
 import { Education } from "@/components/portfolio/Education";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
+import { ScrollReveal } from "@/components/portfolio/ScrollReveal";
 
 function App() {
   return (
@@ -27,14 +28,30 @@ function App() {
 
       <Navbar />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-        <Hero />
-        <ContributionHeatmap />
-        <TechStack />
-        <Projects />
-        <Experience />
-        <Education />
-        <Contact />
-        <Footer />
+        <ScrollReveal duration={600}>
+          <Hero />
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <TechStack />
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <ContributionHeatmap />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Projects />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Experience />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Education />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Contact />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Footer />
+        </ScrollReveal>
       </main>
     </div>
   );

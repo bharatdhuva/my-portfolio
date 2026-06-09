@@ -139,6 +139,11 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 3.5rem;
+  }
+
   html,
   body {
     background-color: var(--color-background);
@@ -201,4 +206,20 @@
 
 ::view-transition-new(root) {
   z-index: 9999;
+}
+
+/* Tech Stack Infinite Loop Marquee */
+.marquee-mask {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  will-change: transform;
 }
