@@ -27,7 +27,6 @@ const techs = [
 
   // AI & APIs
   { name: "G4", fullName: "GPT-4" },
-  { name: "GQ", fullName: "Groq API" },
   { name: "J0", fullName: "Judge0" },
   { name: "GM", fullName: "Gmail API" },
   { name: "O2", fullName: "OAuth 2.0" },
