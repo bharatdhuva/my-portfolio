@@ -140,6 +140,7 @@
   }
 
   html {
+    font-size: 110%; /* Scale entire website layout by 1.1x */
     scroll-behavior: smooth;
     scroll-padding-top: 3.5rem;
   }

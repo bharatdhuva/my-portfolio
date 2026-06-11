@@ -149,15 +149,15 @@ export function ContributionHeatmap() {
                 <div
                   className="grid gap-[3px]"
                   style={{
-                    gridTemplateColumns: "repeat(53, 11px)",
-                    gridTemplateRows: "repeat(7, 11px)",
+                    gridTemplateColumns: "repeat(53, 13px)",
+                    gridTemplateRows: "repeat(7, 13px)",
                     gridAutoFlow: "column",
                   }}
                 >
                   {Array.from({ length: 53 * 7 }).map((_, i) => (
                     <div
                       key={i}
-                      className="h-[11px] w-[11px] rounded-[2px] bg-zinc-200 dark:bg-zinc-800 animate-pulse"
+                      className="h-[13px] w-[13px] rounded-[2px] bg-zinc-200 dark:bg-zinc-800 animate-pulse"
                       style={{
                         animationDelay: `${(i % 13) * 80}ms`,
                         animationDuration: "1.2s",
@@ -235,17 +235,17 @@ export function ContributionHeatmap() {
               <div
                 className="grid gap-[3px] text-[9px] font-medium text-[#737373] dark:text-[#a0a0a0] select-none"
                 style={{
-                  gridTemplateRows: "repeat(7, 11px)",
-                  height: "calc(7 * 11px + 6 * 3px)",
+                  gridTemplateRows: "repeat(7, 13px)",
+                  height: "calc(7 * 13px + 6 * 3px)",
                 }}
               >
-                <div className="flex items-center h-[11px] leading-none"></div> {/* Sun */}
-                <div className="flex items-center h-[11px] leading-none pr-2">Mon</div> {/* Mon */}
-                <div className="flex items-center h-[11px] leading-none"></div> {/* Tue */}
-                <div className="flex items-center h-[11px] leading-none pr-2">Wed</div> {/* Wed */}
-                <div className="flex items-center h-[11px] leading-none"></div> {/* Thu */}
-                <div className="flex items-center h-[11px] leading-none pr-2">Fri</div> {/* Fri */}
-                <div className="flex items-center h-[11px] leading-none"></div> {/* Sat */}
+                <div className="flex items-center h-[13px] leading-none"></div> {/* Sun */}
+                <div className="flex items-center h-[13px] leading-none pr-2">Mon</div> {/* Mon */}
+                <div className="flex items-center h-[13px] leading-none"></div> {/* Tue */}
+                <div className="flex items-center h-[13px] leading-none pr-2">Wed</div> {/* Wed */}
+                <div className="flex items-center h-[13px] leading-none"></div> {/* Thu */}
+                <div className="flex items-center h-[13px] leading-none pr-2">Fri</div> {/* Fri */}
+                <div className="flex items-center h-[13px] leading-none"></div> {/* Sat */}
               </div>
             </div>
 
@@ -255,7 +255,7 @@ export function ContributionHeatmap() {
               <div
                 className="grid gap-[3px] mb-2 text-[10px] text-muted-foreground select-none"
                 style={{
-                  gridTemplateColumns: `repeat(${totalWeeks}, 11px)`,
+                  gridTemplateColumns: `repeat(${totalWeeks}, 13px)`,
                 }}
               >
                 {monthLabels.map(({ colIndex, label }, idx) => (
@@ -277,8 +277,8 @@ export function ContributionHeatmap() {
                 <div
                   className="grid gap-[3px]"
                   style={{
-                    gridTemplateColumns: `repeat(${totalWeeks}, 11px)`,
-                    gridTemplateRows: "repeat(7, 11px)",
+                    gridTemplateColumns: `repeat(${totalWeeks}, 13px)`,
+                    gridTemplateRows: "repeat(7, 13px)",
                     gridAutoFlow: "column",
                   }}
                 >
@@ -289,7 +289,7 @@ export function ContributionHeatmap() {
                       <Tooltip key={i} delayDuration={0}>
                         <TooltipTrigger asChild>
                           <div
-                            className={`h-[11px] w-[11px] rounded-[2px] ${shades[cell.level]} cursor-pointer`}
+                            className={`h-[13px] w-[13px] rounded-[2px] ${shades[cell.level]} cursor-pointer`}
                           />
                         </TooltipTrigger>
                         <TooltipContent
