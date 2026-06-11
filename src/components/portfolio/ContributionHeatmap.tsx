@@ -69,18 +69,43 @@ export function ContributionHeatmap() {
   useEffect(() => {
     async function fetchContributions() {
       try {
+        // Step 1: Try fetching from local/Vercel serverless proxy first
         const response = await fetch("/api/github-contributions");
         if (!response.ok) {
-          throw new Error(`API returned status ${response.status}`);
+          throw new Error(`Proxy API returned status ${response.status}`);
         }
         const json = await response.json();
         setData(json);
       } catch (err) {
-        console.warn("GitHub contributions API failed, using fallback mock data:", err);
-        setData({
-          totalContributions: fallbackTotalContributions,
-          days: fallbackDays,
-        });
+        console.warn("Local/Proxy API failed, attempting to fetch from public scraper API:", err);
+        try {
+          // Step 2: Fallback to public contributions scraper API (enables dev mode & zero-token client preview)
+          const response = await fetch("https://github-contributions-api.jogruber.de/v4/bharatdhuva?y=last");
+          if (!response.ok) {
+            throw new Error(`Scraper API returned status ${response.status}`);
+          }
+          const json = await response.json();
+          const totalContributions = json.contributions.reduce(
+            (sum: number, day: any) => sum + (day.count || 0),
+            0
+          );
+          
+          setData({
+            totalContributions,
+            days: json.contributions.map((day: any) => ({
+              date: day.date,
+              count: day.count || 0,
+              level: (day.level ?? 0) as Shade,
+            })),
+          });
+        } catch (scraperErr) {
+          console.error("All contribution APIs failed. Falling back to local mock data:", scraperErr);
+          // Step 3: Local mock fallback (safe recovery)
+          setData({
+            totalContributions: fallbackTotalContributions,
+            days: fallbackDays,
+          });
+        }
       } finally {
         setLoading(false);
       }
