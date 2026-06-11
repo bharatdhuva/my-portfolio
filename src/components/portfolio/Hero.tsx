@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MapPin, Mail, User, Github, Globe, Twitter } from "lucide-react";
-import profileImg from "../assets/“Peace Feels Better in Nature 🍃” copy.jpg";
+import profileImg from "../../assets/“Peace Feels Better in Nature 🍃” copy.jpg";
 
 const ROLES = ["Software Developer", "Curious Builder", "Product Engineer"];
 
