@@ -8,6 +8,7 @@ import { Education } from "@/components/portfolio/Education";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
 import { ScrollReveal } from "@/components/portfolio/ScrollReveal";
+import { BackgroundMusic } from "@/components/portfolio/BackgroundMusic";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
           <Footer />
         </ScrollReveal>
       </main>
+      <BackgroundMusic />
     </div>
   );
 }
