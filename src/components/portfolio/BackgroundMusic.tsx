@@ -22,6 +22,12 @@ export function BackgroundMusic() {
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
+    const removeInteractionListeners = () => {
+      window.removeEventListener("click", startAudioOnGesture);
+      window.removeEventListener("scroll", startAudioOnGesture);
+      window.removeEventListener("keydown", startAudioOnGesture);
+    };
+
     // Try to autoplay on first interaction
     const startAudioOnGesture = () => {
       if (audioRef.current && audioRef.current.paused) {
@@ -36,15 +42,19 @@ export function BackgroundMusic() {
       }
     };
 
-    const removeInteractionListeners = () => {
-      window.removeEventListener("click", startAudioOnGesture);
-      window.removeEventListener("scroll", startAudioOnGesture);
-      window.removeEventListener("keydown", startAudioOnGesture);
-    };
-
+    // Add interaction listeners
     window.addEventListener("click", startAudioOnGesture);
     window.addEventListener("scroll", startAudioOnGesture);
     window.addEventListener("keydown", startAudioOnGesture);
+
+    // Try to play immediately (in case autoplay is already permitted by browser history/settings)
+    audio.play()
+      .then(() => {
+        removeInteractionListeners();
+      })
+      .catch(() => {
+        console.log("Autoplay initially blocked. Awaiting user interaction (scroll, click, keydown) to start playing by default.");
+      });
 
     // Keyboard shortcut handler (Press 'M' or 'm' to play/pause)
     const handleKeyDown = (e: KeyboardEvent) => {
