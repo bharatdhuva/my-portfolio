@@ -22,14 +22,7 @@ export function BackgroundMusic() {
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
-    const removeInteractionListeners = () => {
-      window.removeEventListener("click", startAudioOnGesture);
-      window.removeEventListener("scroll", startAudioOnGesture);
-      window.removeEventListener("keydown", startAudioOnGesture);
-    };
-
-    // Try to autoplay on first interaction
-    const startAudioOnGesture = () => {
+    function startAudioOnGesture() {
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current
           .play()
@@ -40,12 +33,20 @@ export function BackgroundMusic() {
             console.log("Autoplay blocked by browser. Awaiting user interaction with audio toggle widget.", err);
           });
       }
-    };
+    }
 
-    // Add interaction listeners
-    window.addEventListener("click", startAudioOnGesture);
-    window.addEventListener("scroll", startAudioOnGesture);
-    window.addEventListener("keydown", startAudioOnGesture);
+    function removeInteractionListeners() {
+      window.removeEventListener("click", startAudioOnGesture, { capture: true });
+      window.removeEventListener("pointerdown", startAudioOnGesture, { capture: true });
+      window.removeEventListener("touchstart", startAudioOnGesture, { capture: true });
+      window.removeEventListener("keydown", startAudioOnGesture, { capture: true });
+    }
+
+    // Add interaction listeners as capturing to bypass child element stopPropagation()
+    window.addEventListener("click", startAudioOnGesture, { capture: true });
+    window.addEventListener("pointerdown", startAudioOnGesture, { capture: true });
+    window.addEventListener("touchstart", startAudioOnGesture, { capture: true });
+    window.addEventListener("keydown", startAudioOnGesture, { capture: true });
 
     // Try to play immediately (in case autoplay is already permitted by browser history/settings)
     audio.play()
@@ -53,7 +54,7 @@ export function BackgroundMusic() {
         removeInteractionListeners();
       })
       .catch(() => {
-        console.log("Autoplay initially blocked. Awaiting user interaction (scroll, click, keydown) to start playing by default.");
+        console.log("Autoplay initially blocked. Awaiting user interaction (click, pointerdown, touchstart, keydown) to start playing by default.");
       });
 
     // Keyboard shortcut handler (Press 'M' or 'm' to play/pause)
@@ -103,17 +104,17 @@ export function BackgroundMusic() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 select-none pointer-events-none">
       {/* Tooltip */}
       <div
-        className={`px-3 py-1.5 rounded-lg text-xs font-medium tracking-wide bg-background/90 text-foreground border border-border/40 shadow-lg backdrop-blur-md transition-all duration-300 pointer-events-none ${
+        className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-medium tracking-wide bg-background/90 text-foreground border border-border/40 shadow-lg backdrop-blur-md transition-all duration-300 pointer-events-none flex items-center gap-1 ${
           showTooltip || isHovered
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-4"
         }`}
       >
         <span className="opacity-90">Lofi Ambience</span>
-        <span className="ml-1.5 px-1 py-0.5 rounded bg-muted text-[10px] text-muted-foreground">
+        <span className="hidden sm:inline-block ml-1 px-1 py-0.5 rounded bg-muted text-[10px] text-muted-foreground font-mono">
           M
         </span>
       </div>
@@ -121,31 +122,31 @@ export function BackgroundMusic() {
       {/* Music Toggle Widget */}
       <button
         onClick={togglePlay}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
         aria-label="Toggle background music"
-        className={`w-12 h-12 flex items-center justify-center rounded-full bg-background/80 hover:bg-accent/10 border border-border/80 shadow-lg backdrop-blur-md cursor-pointer transition-all duration-300 group ${
+        className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-background/80 hover:bg-accent/10 border border-border/80 shadow-lg backdrop-blur-md cursor-pointer transition-all duration-300 group pointer-events-auto ${
           isPlaying ? "scale-105" : "scale-100"
         }`}
       >
         {isPlaying ? (
           // Active state (Equalizer Visualizer or Mute on hover)
-          isHovered ? (
-            <VolumeX className="h-5 w-5 text-foreground/80 group-hover:scale-110 transition-transform" />
+          showTooltip ? (
+            <VolumeX className="h-4 w-4 sm:h-5 w-5 text-foreground/80 group-hover:scale-110 transition-transform" />
           ) : (
-            <div className="flex items-end gap-[3px] h-4">
-              <span className="w-[3px] bg-foreground/90 rounded-full animate-equalizer-1 h-3" />
-              <span className="w-[3px] bg-foreground/90 rounded-full animate-equalizer-2 h-4" />
-              <span className="w-[3px] bg-foreground/90 rounded-full animate-equalizer-3 h-2" />
-              <span className="w-[3px] bg-foreground/90 rounded-full animate-equalizer-4 h-3.5" />
+            <div className="flex items-end gap-[2px] sm:gap-[3px] h-3 sm:h-4">
+              <span className="w-[2px] sm:w-[3px] bg-foreground/90 rounded-full animate-equalizer-1 h-2 sm:h-3" />
+              <span className="w-[2px] sm:w-[3px] bg-foreground/90 rounded-full animate-equalizer-2 h-3 sm:h-4" />
+              <span className="w-[2px] sm:w-[3px] bg-foreground/90 rounded-full animate-equalizer-3 h-1.5 sm:h-2" />
+              <span className="w-[2px] sm:w-[3px] bg-foreground/90 rounded-full animate-equalizer-4 h-2.5 sm:h-3.5" />
             </div>
           )
         ) : (
           // Paused/Muted state (Play or Music note)
-          isHovered ? (
-            <Play className="h-5 w-5 ml-0.5 text-foreground/80 group-hover:scale-110 transition-transform" />
+          showTooltip ? (
+            <Play className="h-4 w-4 sm:h-5 w-5 ml-0.5 text-foreground/80 group-hover:scale-110 transition-transform" />
           ) : (
-            <Music className="h-5 w-5 text-foreground/60" />
+            <Music className="h-4 w-4 sm:h-5 w-5 text-foreground/60" />
           )
         )}
       </button>
