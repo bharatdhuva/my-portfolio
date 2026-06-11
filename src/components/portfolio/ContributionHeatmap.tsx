@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 type Shade = 0 | 1 | 2 | 3 | 4;
 
@@ -271,32 +272,37 @@ export function ContributionHeatmap() {
                 ))}
               </div>
 
-              {/* Heatmap Grid */}
-              <div
-                className="grid gap-[3px]"
-                style={{
-                  gridTemplateColumns: `repeat(${totalWeeks}, 11px)`,
-                  gridTemplateRows: "repeat(7, 11px)",
-                  gridAutoFlow: "column",
-                }}
-              >
-                {data.days.map((cell, i) => {
-                  const countText = cell.count === 0 ? "No" : cell.count;
-                  const contributionText = cell.count === 1 ? "contribution" : "contributions";
-                  return (
-                    <div
-                      key={i}
-                      className={`h-[11px] w-[11px] rounded-[2px] ${shades[cell.level]} relative group cursor-pointer`}
-                    >
-                      {/* Tooltip */}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 hidden group-hover:block z-50 bg-zinc-900 dark:bg-zinc-800 text-zinc-100 text-[10px] font-mono py-1.5 px-3 rounded shadow-lg whitespace-nowrap pointer-events-none border border-zinc-700/50">
-                        {countText} {contributionText} on {formatDate(cell.date)}.
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-[4px] border-transparent border-t-zinc-900 dark:border-t-zinc-800" />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              {/* Heatmap Grid wrapper in TooltipProvider to support portaled radix tooltips */}
+              <TooltipProvider delayDuration={0}>
+                <div
+                  className="grid gap-[3px]"
+                  style={{
+                    gridTemplateColumns: `repeat(${totalWeeks}, 11px)`,
+                    gridTemplateRows: "repeat(7, 11px)",
+                    gridAutoFlow: "column",
+                  }}
+                >
+                  {data.days.map((cell, i) => {
+                    const countText = cell.count === 0 ? "No" : cell.count;
+                    const contributionText = cell.count === 1 ? "contribution" : "contributions";
+                    return (
+                      <Tooltip key={i} delayDuration={0}>
+                        <TooltipTrigger asChild>
+                          <div
+                            className={`h-[11px] w-[11px] rounded-[2px] ${shades[cell.level]} cursor-pointer`}
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent
+                          side="top"
+                          className="bg-zinc-950 dark:bg-zinc-900 text-zinc-100 text-[10px] font-mono py-1.5 px-3 rounded shadow-lg border border-zinc-700/50"
+                        >
+                          {countText} {contributionText} on {formatDate(cell.date)}.
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  })}
+                </div>
+              </TooltipProvider>
             </div>
           </div>
 
