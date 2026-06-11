@@ -61,7 +61,12 @@ export function Hero() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
-        <Meta label="LOCATION" icon={<MapPin className="h-3.5 w-3.5" />} value="Vadodara, India" />
+        <Meta
+          label="LOCATION"
+          icon={<MapPin className="h-3.5 w-3.5" />}
+          value="Vadodara, India"
+          href="https://www.google.com/maps/search/?api=1&query=Vadodara,+Gujarat,+India"
+        />
         <Meta
           label="EMAIL"
           icon={<Mail className="h-3.5 w-3.5" />}
@@ -211,13 +216,6 @@ function Meta({
   value: string;
   href?: string;
 }) {
-  const content = (
-    <>
-      <span className="text-muted-foreground">{icon}</span>
-      {value}
-    </>
-  );
-
   return (
     <div>
       <div className="text-[10px] font-medium tracking-[0.15em] text-muted-foreground mb-1.5">
@@ -226,12 +224,22 @@ function Meta({
       {href ? (
         <a
           href={href}
-          className="flex items-center gap-1.5 text-sm text-foreground hover:underline transition-colors"
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+          className="group flex items-center gap-1.5 text-sm text-foreground transition-colors w-max"
         >
-          {content}
+          <span className="text-muted-foreground group-hover:text-foreground transition-colors shrink-0">
+            {icon}
+          </span>
+          <span className="relative pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:origin-bottom-right group-hover:after:origin-bottom-left group-hover:after:scale-x-100">
+            {value}
+          </span>
         </a>
       ) : (
-        <div className="flex items-center gap-1.5 text-sm text-foreground">{content}</div>
+        <div className="flex items-center gap-1.5 text-sm text-foreground">
+          <span className="text-muted-foreground">{icon}</span>
+          <span>{value}</span>
+        </div>
       )}
     </div>
   );

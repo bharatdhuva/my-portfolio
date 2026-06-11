@@ -76,7 +76,7 @@ export function Navbar() {
             <li key={l.label}>
               <a
                 href={l.href}
-                className="text-foreground/80 hover:text-foreground transition-colors"
+                className="relative pb-1 text-foreground/80 hover:text-foreground transition-colors after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:origin-bottom-right hover:after:origin-bottom-left hover:after:scale-x-100"
               >
                 {l.label}
               </a>
