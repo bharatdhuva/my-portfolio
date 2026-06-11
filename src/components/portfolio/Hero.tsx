@@ -148,7 +148,7 @@ export function Hero() {
           },
           {
             label: "Resume",
-            href: "/Bharat_Resume.pdf",
+            href: "https://drive.google.com/file/d/12swxztMbgh7ooJs56uRED6FHNctigdxB/view?usp=sharing",
             icon: (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
