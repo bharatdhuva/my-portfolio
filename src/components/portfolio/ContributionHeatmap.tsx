@@ -126,17 +126,35 @@ export function ContributionHeatmap() {
     return (
       <section className="py-8">
         <style>{`
-          .bg-contrib-0 { background-color: #ebedf0; }
-          .bg-contrib-1 { background-color: #9be9a8; }
-          .bg-contrib-2 { background-color: #40c463; }
-          .bg-contrib-3 { background-color: #30a14e; }
-          .bg-contrib-4 { background-color: #216e39; }
+          .bg-contrib-skeleton {
+            background-color: #ebedf0;
+            --skeleton-bg: #ebedf0;
+            --snake-color: #216e39;
+          }
+          .dark .bg-contrib-skeleton {
+            background-color: #161b22;
+            --skeleton-bg: #161b22;
+            --snake-color: #39d353;
+          }
 
-          .dark .bg-contrib-0 { background-color: #161b22; }
-          .dark .bg-contrib-1 { background-color: #0e4429; }
-          .dark .bg-contrib-2 { background-color: #006d32; }
-          .dark .bg-contrib-3 { background-color: #26a641; }
-          .dark .bg-contrib-4 { background-color: #39d353; }
+          @keyframes snakeShimmer {
+            0% {
+              background-color: var(--skeleton-bg);
+            }
+            3% {
+              background-color: var(--snake-color);
+              box-shadow: 0 0 6px var(--snake-color);
+            }
+            12%, 100% {
+              background-color: var(--skeleton-bg);
+            }
+          }
+
+          .animate-snake {
+            animation-name: snakeShimmer;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+          }
         `}</style>
 
         <div className="h-4 w-48 bg-zinc-200 dark:bg-zinc-800 rounded mb-4 animate-pulse" />
@@ -154,16 +172,22 @@ export function ContributionHeatmap() {
                     gridAutoFlow: "column",
                   }}
                 >
-                  {Array.from({ length: 53 * 7 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-[13px] w-[13px] rounded-[2px] bg-zinc-200 dark:bg-zinc-800 animate-pulse"
-                      style={{
-                        animationDelay: `${(i % 13) * 80}ms`,
-                        animationDuration: "1.2s",
-                      }}
-                    />
-                  ))}
+                  {Array.from({ length: 53 * 7 }).map((_, i) => {
+                    const col = Math.floor(i / 7);
+                    const row = i % 7;
+                    const snakeIndex = col % 2 === 0 ? col * 7 + row : col * 7 + (6 - row);
+                    const delay = snakeIndex * 12; // 12ms delay per cell
+                    return (
+                      <div
+                        key={i}
+                        className="h-[13px] w-[13px] rounded-[2px] bg-contrib-skeleton animate-snake"
+                        style={{
+                          animationDelay: `${delay}ms`,
+                          animationDuration: "4.45s",
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
