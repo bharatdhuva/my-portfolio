@@ -141,27 +141,29 @@ export function ContributionHeatmap() {
         <div className="h-4 w-48 bg-zinc-200 dark:bg-zinc-800 rounded mb-4 animate-pulse" />
         <div className="overflow-x-auto scrollbar-none border border-border/40 rounded-lg p-4 bg-muted/20 dark:bg-zinc-950/40">
           <div className="min-w-[760px] pr-2">
-            <div className="grid gap-[3px] mb-2 text-[10px] h-3" />
-            <div className="flex gap-2">
-              <div className="w-6" />
-              <div
-                className="grid gap-[3px] flex-1"
-                style={{
-                  gridTemplateColumns: "repeat(52, minmax(0, 1fr))",
-                  gridTemplateRows: "repeat(7, 1fr)",
-                  gridAutoFlow: "column",
-                }}
-              >
-                {Array.from({ length: 52 * 7 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square rounded-[2px] bg-zinc-200 dark:bg-zinc-800 animate-pulse"
-                    style={{
-                      animationDelay: `${(i % 13) * 80}ms`,
-                      animationDuration: "1.2s",
-                    }}
-                  />
-                ))}
+            <div className="flex gap-3">
+              <div className="w-[28px]" /> {/* Weekday spacing */}
+              <div className="flex-1">
+                <div className="grid gap-[3px] mb-2 text-[10px] h-3" />
+                <div
+                  className="grid gap-[3px]"
+                  style={{
+                    gridTemplateColumns: "repeat(53, 11px)",
+                    gridTemplateRows: "repeat(7, 11px)",
+                    gridAutoFlow: "column",
+                  }}
+                >
+                  {Array.from({ length: 53 * 7 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-[11px] w-[11px] rounded-[2px] bg-zinc-200 dark:bg-zinc-800 animate-pulse"
+                      style={{
+                        animationDelay: `${(i % 13) * 80}ms`,
+                        animationDuration: "1.2s",
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -186,7 +188,7 @@ export function ContributionHeatmap() {
     if (dayIndex < data.days.length) {
       const dateStr = data.days[dayIndex].date;
       const d = new Date(dateStr + "T00:00:00");
-      const m = d.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+      const m = d.toLocaleDateString("en-US", { month: "short" });
       if (m !== lastMonth) {
         monthLabels.push({ colIndex: c, label: m });
         lastMonth = m;
@@ -218,7 +220,7 @@ export function ContributionHeatmap() {
         .dark .bg-contrib-4 { background-color: #39d353; }
       `}</style>
 
-      {/* Header aligned like GitHub: "288 contributions in the last year" */}
+      {/* Header aligned like GitHub: "302 contributions in the last year" */}
       <div className="mb-3 text-sm font-normal text-foreground select-none">
         {data.totalContributions.toLocaleString()} contributions in the last year
       </div>
@@ -226,23 +228,23 @@ export function ContributionHeatmap() {
       {/* Main Heatmap Container */}
       <div ref={scrollRef} className="overflow-x-auto scrollbar-none border border-border/40 rounded-lg p-4 bg-muted/20 dark:bg-zinc-950/40">
         <div className="min-w-[760px] pr-2">
-          <div className="flex gap-2 items-stretch">
+          <div className="flex gap-3 items-stretch">
             {/* Weekdays Row Labels (aligned to rows) */}
-            <div className="flex flex-col justify-end pt-5 pb-[2px]">
+            <div className="flex flex-col justify-end pb-[2px]">
               <div
-                className="grid gap-[3px] text-[9px] font-medium text-muted-foreground select-none"
+                className="grid gap-[3px] text-[9px] font-medium text-[#737373] dark:text-[#a0a0a0] select-none"
                 style={{
-                  gridTemplateRows: "repeat(7, 1fr)",
-                  height: "100%",
+                  gridTemplateRows: "repeat(7, 11px)",
+                  height: "calc(7 * 11px + 6 * 3px)",
                 }}
               >
-                <div className="flex items-center h-full"></div> {/* Sun */}
-                <div className="flex items-center h-full pr-1">Mon</div> {/* Mon */}
-                <div className="flex items-center h-full"></div> {/* Tue */}
-                <div className="flex items-center h-full pr-1">Wed</div> {/* Wed */}
-                <div className="flex items-center h-full"></div> {/* Thu */}
-                <div className="flex items-center h-full pr-1">Fri</div> {/* Fri */}
-                <div className="flex items-center h-full"></div> {/* Sat */}
+                <div className="flex items-center h-[11px] leading-none"></div> {/* Sun */}
+                <div className="flex items-center h-[11px] leading-none pr-2">Mon</div> {/* Mon */}
+                <div className="flex items-center h-[11px] leading-none"></div> {/* Tue */}
+                <div className="flex items-center h-[11px] leading-none pr-2">Wed</div> {/* Wed */}
+                <div className="flex items-center h-[11px] leading-none"></div> {/* Thu */}
+                <div className="flex items-center h-[11px] leading-none pr-2">Fri</div> {/* Fri */}
+                <div className="flex items-center h-[11px] leading-none"></div> {/* Sat */}
               </div>
             </div>
 
@@ -250,9 +252,9 @@ export function ContributionHeatmap() {
             <div className="flex-1">
               {/* Month Labels aligned to grid columns */}
               <div
-                className="grid gap-[3px] mb-2 text-[10px] tracking-[0.15em] text-muted-foreground select-none"
+                className="grid gap-[3px] mb-2 text-[10px] text-muted-foreground select-none"
                 style={{
-                  gridTemplateColumns: `repeat(${totalWeeks}, minmax(0, 1fr))`,
+                  gridTemplateColumns: `repeat(${totalWeeks}, 11px)`,
                 }}
               >
                 {monthLabels.map(({ colIndex, label }, idx) => (
@@ -262,7 +264,7 @@ export function ContributionHeatmap() {
                       gridColumnStart: colIndex + 1,
                       gridColumnEnd: "span 4",
                     }}
-                    className="text-left"
+                    className="text-left font-normal text-[9px] text-[#737373] dark:text-[#a0a0a0]"
                   >
                     {label}
                   </div>
@@ -273,8 +275,8 @@ export function ContributionHeatmap() {
               <div
                 className="grid gap-[3px]"
                 style={{
-                  gridTemplateColumns: `repeat(${totalWeeks}, minmax(0, 1fr))`,
-                  gridTemplateRows: "repeat(7, 1fr)",
+                  gridTemplateColumns: `repeat(${totalWeeks}, 11px)`,
+                  gridTemplateRows: "repeat(7, 11px)",
                   gridAutoFlow: "column",
                 }}
               >
@@ -284,7 +286,7 @@ export function ContributionHeatmap() {
                   return (
                     <div
                       key={i}
-                      className={`aspect-square rounded-[2px] ${shades[cell.level]} relative group cursor-pointer`}
+                      className={`h-[11px] w-[11px] rounded-[2px] ${shades[cell.level]} relative group cursor-pointer`}
                     >
                       {/* Tooltip */}
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 hidden group-hover:block z-50 bg-zinc-900 dark:bg-zinc-800 text-zinc-100 text-[10px] font-mono py-1.5 px-3 rounded shadow-lg whitespace-nowrap pointer-events-none border border-zinc-700/50">
