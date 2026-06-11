@@ -71,7 +71,7 @@ export function Projects() {
         {projects.map((p) => (
           <article
             key={p.name}
-            className="rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200 group overflow-hidden"
+            className="rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200 group overflow-hidden active:scale-[0.99] duration-200"
           >
             {/* ── Thumbnail ── */}
             <div className="bg-muted/50 border-b border-border p-3">
@@ -106,7 +106,7 @@ export function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${p.name} GitHub`}
-                      className="hover:text-foreground transition-colors"
+                      className="hover:text-foreground transition-all duration-150 hover:scale-110 active:scale-90 cursor-pointer"
                     >
                       <Github className="h-3.5 w-3.5" />
                     </a>
@@ -117,7 +117,7 @@ export function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${p.name} live site`}
-                      className="flex items-center gap-0.5 hover:text-foreground transition-colors text-xs font-medium"
+                      className="flex items-center gap-0.5 hover:text-foreground transition-all duration-150 text-xs font-medium hover:scale-[1.05] active:scale-95 cursor-pointer"
                     >
                       <span>Live</span>
                       <ArrowUpRight className="h-3.5 w-3.5" />
@@ -130,7 +130,7 @@ export function Projects() {
 
               <div className="flex items-center gap-2.5 flex-wrap">
                 {p.tech.map((t) => (
-                  <div key={t} className="transition-transform duration-150 hover:scale-110">
+                  <div key={t} className="transition-transform duration-150 hover:scale-110 active:scale-90 cursor-pointer">
                     <TechIcon name={t} className="h-5 w-5" />
                   </div>
                 ))}

@@ -183,7 +183,7 @@ export function Hero() {
               target={href.startsWith("mailto:") ? undefined : "_blank"}
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-[#737373] dark:text-[#a0a0a0] hover:text-[#111111] dark:hover:text-[#f0f0f0] transition-colors duration-150"
+              className="text-[#737373] dark:text-[#a0a0a0] hover:text-[#111111] dark:hover:text-[#f0f0f0] transition-all duration-150 hover:scale-110 active:scale-90 cursor-pointer"
             >
               {icon}
             </a>
@@ -218,6 +218,15 @@ function Meta({
   value: string;
   href?: string;
 }) {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 550);
+  };
+
   return (
     <div>
       <div className="text-[10px] font-medium tracking-[0.15em] text-muted-foreground mb-1.5">
@@ -226,14 +235,21 @@ function Meta({
       {href ? (
         <a
           href={href}
+          onClick={handleClick}
           target={href.startsWith("http") ? "_blank" : undefined}
           rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-          className="group flex items-center gap-1.5 text-sm text-foreground transition-colors w-max"
+          className="group flex items-center gap-1.5 text-sm text-foreground transition-all duration-150 active:scale-95 active:opacity-90 w-max cursor-pointer"
         >
           <span className="text-muted-foreground group-hover:text-foreground transition-colors shrink-0">
             {icon}
           </span>
-          <span className="relative pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:origin-bottom-right group-hover:after:origin-bottom-left group-hover:after:scale-x-100">
+          <span
+            className={`relative pb-0.5 ${
+              isClicked
+                ? "animate-click-underline"
+                : "after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:origin-bottom-right group-hover:after:origin-bottom-left group-hover:after:scale-x-100"
+            }`}
+          >
             {value}
           </span>
         </a>
@@ -322,7 +338,7 @@ function SpotifyStatus() {
           href={`https://open.spotify.com/search/${encodeURIComponent(data.title + " " + data.artist)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground/70 truncate flex-1 min-w-0 no-underline hover:underline decoration-muted-foreground underline-offset-2 transition-all"
+          className="text-foreground/70 truncate flex-1 min-w-0 no-underline hover:underline decoration-muted-foreground underline-offset-2 transition-all duration-100 active:scale-[0.98] active:opacity-90 inline-block cursor-pointer"
         >
           {data.title} · {data.artist}
         </a>

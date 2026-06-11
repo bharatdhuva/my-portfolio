@@ -166,7 +166,7 @@ export function Contact() {
                   download={download}
                   target={download ? undefined : href.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-md border border-border hover:bg-muted transition-colors group"
+                  className="flex items-center gap-3 p-3 rounded-md border border-border hover:bg-muted transition-all duration-150 group hover:scale-[1.01] active:scale-[0.98] cursor-pointer"
                 >
                   {renderIcon("h-[18px] w-[18px] flex-shrink-0")}
                   <div className="flex-1 min-w-0">

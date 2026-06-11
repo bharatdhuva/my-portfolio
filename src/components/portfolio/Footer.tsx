@@ -60,14 +60,14 @@ export function Footer() {
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-border text-xs text-muted-foreground">
         <div>© 2026 Bharat Dhuva.</div>
         <nav className="flex items-center gap-5">
-          <a href="#home" className="hover:text-foreground transition-colors">
+          <a href="#home" className="hover:text-foreground transition-all duration-150 active:scale-95 active:opacity-90 cursor-pointer">
             Home
           </a>
 
-          <a href="#projects" className="hover:text-foreground transition-colors">
+          <a href="#projects" className="hover:text-foreground transition-all duration-150 active:scale-95 active:opacity-90 cursor-pointer">
             Projects
           </a>
-          <a href="#contact" className="hover:text-foreground transition-colors">
+          <a href="#contact" className="hover:text-foreground transition-all duration-150 active:scale-95 active:opacity-90 cursor-pointer">
             Contact
           </a>
         </nav>
@@ -78,7 +78,7 @@ export function Footer() {
               href={href}
               target={href.startsWith("mailto:") ? undefined : "_blank"}
               rel="noopener noreferrer"
-              className="p-1.5 rounded-md hover:bg-muted hover:text-foreground transition-colors"
+              className="p-1.5 rounded-md hover:bg-muted hover:text-foreground transition-all duration-150 hover:scale-110 active:scale-90 cursor-pointer"
             >
               {renderIcon("h-3.5 w-3.5 flex-shrink-0")}
             </a>

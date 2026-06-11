@@ -125,7 +125,7 @@ export function BackgroundMusic() {
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         aria-label="Toggle background music"
-        className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-background/80 hover:bg-accent/10 border border-border/80 shadow-lg backdrop-blur-md cursor-pointer transition-all duration-300 group pointer-events-auto ${
+        className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-background/80 hover:bg-accent/10 border border-border/80 shadow-lg backdrop-blur-md cursor-pointer transition-all duration-300 active:scale-90 group pointer-events-auto ${
           isPlaying ? "scale-105" : "scale-100"
         }`}
       >
