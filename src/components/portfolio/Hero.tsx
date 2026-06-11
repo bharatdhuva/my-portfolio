@@ -72,7 +72,7 @@ export function Hero() {
 
       <p className="text-sm text-foreground/80 leading-relaxed max-w-2xl mb-6 break-words">
         Full-stack developer with a backend-first mindset. Node.js · Express · Redis · Cloud. <br />
-        Open - Internship | Freelance | Remote | Full-Time Roles.
+        Open - Internship | Freelance | Remote | Full-Time Role.
       </p>
 
       <SpotifyStatus />
