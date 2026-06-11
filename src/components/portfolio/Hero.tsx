@@ -77,6 +77,10 @@ export function Hero() {
 
       <SpotifyStatus />
 
+      <div className="text-[10px] font-medium tracking-[0.15em] text-muted-foreground mb-3">
+        CONNECT WITH ME
+      </div>
+
       <div className="flex items-center flex-wrap gap-4">
         {[
           {
