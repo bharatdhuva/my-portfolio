@@ -155,7 +155,7 @@ export function Hero() {
           },
           {
             label: "Resume",
-            href: "https://drive.google.com/file/d/12swxztMbgh7ooJs56uRED6FHNctigdxB/view?usp=sharing",
+            href: "https://drive.google.com/file/d/14wgqap4agiIN_B81ePIWrYMVCMTf9DWt/view?usp=sharing",
             icon: (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -244,11 +244,10 @@ function Meta({
             {icon}
           </span>
           <span
-            className={`relative pb-0.5 ${
-              isClicked
-                ? "animate-click-underline"
-                : "after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:origin-bottom-right group-hover:after:origin-bottom-left group-hover:after:scale-x-100"
-            }`}
+            className={`relative pb-0.5 ${isClicked
+              ? "animate-click-underline"
+              : "after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:origin-bottom-right group-hover:after:origin-bottom-left group-hover:after:scale-x-100"
+              }`}
           >
             {value}
           </span>
